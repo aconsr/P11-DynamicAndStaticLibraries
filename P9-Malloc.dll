@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <windows.h>
+#define DllExport _declspec(dllexport)
+
+DllExport void extremelyLargeString(int iSize, char* cStr)
+{
+    char  cBool = 'Y';
+    int iSizeParse;
+    do
+    {
+        printf("Enter the size of the string to parse: \n");
+        scanf("%d", iSizeParse);
+        iSize=iSize+iSizeParse;
+        cStr =  (char*) realloc(cStr,iSize);
+        printf("Enter the string: \n");
+        scanf("%s",cStr);
+
+        printf("%s\n", cStr);
+        printf("Want to quit parsing strings? (Y/N)");
+        scanf("%c", cBool);
+    }
+    while(cBool!='N');
+    free(cStr);
+}
+
+
+int main()
+{   int iSize;
+    char* cStr;
+
+    printf("Enter the string size: \n");
+    scanf("%s",iSize);
+    cStr= (char *) malloc(iSize);
+    printf("Enter the string: \n");
+    scanf("%s",cStr);
+    extremelyLargeString(iSize, cStr);
+
+
+
+
+    return 0;
+}
